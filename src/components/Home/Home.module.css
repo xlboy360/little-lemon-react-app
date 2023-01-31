@@ -1,0 +1,42 @@
+.jumbotron {
+  background-color: var(--main-green-color);
+  display: flex;
+  justify-content: center;
+  color: var(--secondary-white-color);
+  margin-bottom: 10vh;
+}
+
+.jumbotron h1 {
+  color: var(--main-yellow-color);
+  margin: 20px 0 5px 0;
+}
+
+.jumbotron h3 {
+  margin: 0;
+}
+
+.jumbotron p {
+  padding-right: 18vw;
+  margin-bottom: 4rem;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.chicago {
+  max-width: 520px;
+  padding-right: 5%;
+}
+
+.imageContainer {
+  width: 320px;
+  height: 340px;
+  min-height: 340px;
+  min-width: 320px;
+  background-image: url("/src/assets/restauranfood.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: none;
+  border-radius: 24px;
+  margin-bottom: -30px;
+  margin-top: 30px;
+}

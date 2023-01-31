@@ -1,0 +1,21 @@
+footer {
+  display: flex;
+  justify-content: center;
+  background-color: var(--secondary-white-color);
+}
+
+footer ul {
+  padding-inline-start: 0px;
+}
+
+.footer-column:nth-child(2) {
+  margin-left: 5rem;
+}
+
+.footer-column {
+  margin-right: 2rem;
+}
+
+footer ul li {
+  font-size: 12px;
+}

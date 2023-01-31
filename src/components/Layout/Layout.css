@@ -1,0 +1,27 @@
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: var(--secondary-white-color);
+  align-items: center;
+  height: 10vh;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  margin-right: 12px;
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
