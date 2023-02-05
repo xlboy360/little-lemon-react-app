@@ -13,7 +13,7 @@ function Home() {
           We are a family owned Mediterranean restaurant, focused on traditional
           recipes served with a modern twist.
         </p>
-        <Link className="button" to={""}>
+        <Link className="button" to={"/reservations"}>
           Reserve a table
         </Link>
       </div>

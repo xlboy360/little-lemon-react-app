@@ -2,6 +2,9 @@ footer {
   display: flex;
   justify-content: center;
   background-color: var(--secondary-white-color);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 footer ul {

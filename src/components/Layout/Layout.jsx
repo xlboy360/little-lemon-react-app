@@ -24,7 +24,7 @@ function Nav() {
             <Link to="">Menu</Link>
           </li>
           <li>
-            <Link to="">Rervations</Link>
+            <Link to="/reservations">Rervations</Link>
           </li>
           <li>
             <Link to="">Order online</Link>
@@ -34,7 +34,6 @@ function Nav() {
           </li>
         </ul>
       </nav>
-      <Header />
       <Outlet />
       <Footer />
     </>

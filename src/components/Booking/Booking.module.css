@@ -1,0 +1,39 @@
+.bookingLayout {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 65vh;
+}
+
+.restaurantPhoto {
+  max-width: 42vw;
+  border-radius: 16px;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+
+.form {
+  font-size: 16px;
+  z-index: 100;
+}
+
+.form p {
+  font-size: 12px;
+  margin: 0;
+}
+
+.formHeader {
+  color: var(--main-green-color);
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.sendBtn {
+  background-color: var(--main-green-color);
+  color: var(--secondary-white-color);
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  font-weight: 600;
+}
