@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import styles from "./Booking.module.css";
 
-function BookingForm() {
+function BookingForm({ availableTimes, setAvailableTimes }) {
   const [date, setDate] = useState({
     value: "",
     isValid: false,
@@ -14,8 +14,6 @@ function BookingForm() {
   });
   const [numOfGuests, setNumOfGuests] = useState(1);
   const [occasion, setOccasion] = useState("");
-
-  const availableTimes = ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"];
 
   const ErrorMessage = ({ errorText }) => {
     return <p style={{ color: "red", fontWeight: "bold" }}>{errorText}</p>;
