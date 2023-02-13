@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import { reserveDate, submitForm } from "../../actions/uiActions";
 
 import styles from "./Booking.module.css";
 
-function BookingForm({ availableTimes, setAvailableTimes }) {
+function BookingForm({state, dispatch}) {
   const [date, setDate] = useState({
     value: "",
-    isValid: false,
+    //*  TODO: hardcode la validacion para probar puedes hacer tu validacion en el meotod que hice esta comentado una propuesta
+    isValid: true, // false
     isTouched: false,
   });
   const [reservationTime, setReservationTime] = useState({
@@ -29,6 +31,8 @@ function BookingForm({ availableTimes, setAvailableTimes }) {
       value: "",
       isTouched: false,
     });
+    setNumOfGuests(1)
+    setOccasion('')
   };
 
   const handleSubmit = (e) => {
@@ -37,9 +41,25 @@ function BookingForm({ availableTimes, setAvailableTimes }) {
       alert("Please select a valid date");
     } else {
       alert("Reservation created");
+      dispatch(submitForm({date: date.value, reservationTime: reservationTime.value, numOfGuests, occasion}))
       clearForm();
     }
   };
+
+  const handleRefetch = (value) =>{
+    // setDate({ ...date, isTouched: true });
+            // let auxDate = new Date(date.value.toString().replace("-", "/"));
+            // if (date.value) {
+            //   if (auxDate/Date.getTime() > new Date().getTime()) {
+            //     setDate({ ...date, isValid: true });
+            //   } else {
+            //     setDate({ ...date, isValid: false });
+            //   }
+            // }
+            // if date.isValid -> ejecutar dispatch
+    dispatch(reserveDate(value))
+  }
+
 
   return (
     <>
@@ -54,18 +74,21 @@ function BookingForm({ availableTimes, setAvailableTimes }) {
         <input
           type="date"
           id="res-date"
+          value={date.value}
           onChange={(e) => setDate({ ...date, value: e.target.value })}
-          onBlur={() => {
-            setDate({ ...date, isTouched: true });
-            let auxDate = new Date(date.value.toString().replace("-", "/"));
-            if (date.value) {
-              if (auxDate.getTime() > new Date().getTime()) {
-                setDate({ ...date, isValid: true });
-              } else {
-                setDate({ ...date, isValid: false });
-              }
-            }
-          }}
+          onBlur={ ()=>handleRefetch(date.value)
+            // () => {
+            // setDate({ ...date, isTouched: true });
+            // let auxDate = new Date(date.value.toString().replace("-", "/"));
+            // if (date.value) {
+            //   if (auxDate/Date.getTime() > new Date().getTime()) {
+            //     setDate({ ...date, isValid: true });
+            //   } else {
+            //     setDate({ ...date, isValid: false });
+            //   }
+            // }
+          // }
+        }
         />
         {date.isTouched && date.value.length <= 0 ? (
           <ErrorMessage errorText="Please provide a booking date" />
@@ -77,15 +100,22 @@ function BookingForm({ availableTimes, setAvailableTimes }) {
         <label htmlFor="res-time">Choose time</label>
         <select
           id="res-time"
+          value={reservationTime.value || 'DEFAULT'}
           onChange={(e) =>
             setReservationTime({ value: e.target.value, isTouched: true })
           }
         >
-          {availableTimes.map((time, key) => (
-            <option key={key} value={key}>
-              {time}
+          <option value='DEFAULT' disabled hidden>Choose an option</option>
+          {
+            state.reservationDate.length>0 ?
+          state.reservationDate?.map((item, key) => (
+            <option key={key} value={item}>
+              {item}
             </option>
-          ))}
+          ))
+          :
+          <option disabled>No data</option>
+        }
         </select>
         <label htmlFor="guests">Number of guests</label>
         <input
@@ -94,18 +124,19 @@ function BookingForm({ availableTimes, setAvailableTimes }) {
           min="1"
           max="10"
           id="guests"
+          value={numOfGuests}
           onChange={(e) => setNumOfGuests(e.target.value)}
         />
         <label htmlFor="occasion">Occasion</label>
-        <select id="occasion" onChange={(e) => setOccasion(e.target.value)}>
+        <select id="occasion" value={occasion || 'DEFAULT'} onChange={(e) => setOccasion(e.target.value)}>
+        <option value='DEFAULT' disabled hidden>Choose an option</option>
           <option>Birthday</option>
           <option>Anniversary</option>
         </select>
-        <input
+        <button
           type="submit"
-          value="Make Your reservation"
           className={styles.sendBtn}
-        />
+        >Make Your reservation</button>
       </form>
     </>
   );

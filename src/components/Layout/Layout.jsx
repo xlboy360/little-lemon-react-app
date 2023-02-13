@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 import Header from "../Header";
 
 import "./Layout.css";
-import logo from "../../assets/Logo.svg";
+import logo from "../../assets/logo.svg";
 
 function Nav() {
   return (

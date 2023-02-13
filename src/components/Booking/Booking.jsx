@@ -1,34 +1,17 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useReducer} from "react";
 import BookingForm from "./BookingForm";
 import styles from "./Booking.module.css";
 
+import { reducer } from "../../Reducer/reducer";
 import restaurantPhoto from "../../assets/restaurant.jpg";
 
 function Booking() {
-  const updateTimes = () => {
-    return availableTimes;
-  };
 
-  const initializeTimes = () => {
-    // eslint-disable-next-line no-undef
-    return fetchAPI(new Date());
-  };
-
-  const [availableTimes, setAvailableTimes] = useReducer(
-    updateTimes,
-    initializeTimes
-  );
-
-  useEffect(() => {
-    initializeTimes();
-  }, []);
-
+  const [state, dispatch] = useReducer( reducer, {reservationDate: [], form:''} )
+  
   return (
     <div className={styles.bookingLayout}>
-      <BookingForm
-        availableTimes={availableTimes}
-        setAvailableTimes={setAvailableTimes}
-      />
+      <BookingForm state={state} dispatch={dispatch} />
       <img
         src={restaurantPhoto}
         alt="Restaurant"
